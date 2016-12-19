@@ -1,0 +1,1 @@
+sudo docker exec -it alex_my_application_img_1 bash
