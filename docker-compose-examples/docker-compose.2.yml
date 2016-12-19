@@ -1,0 +1,42 @@
+
+docker_auth:
+  image: "cesanta/docker_auth:stable"
+  command: --v=2 --alsologtostderr /config/auth_config.yml
+  ports:
+    - 5001:5001
+  volumes:
+    - ./docker-auth/config:/config:ro
+    - ./docker-auth/logs:/logs
+
+redis:
+  image: redis
+  ports:
+    - 6379:6379
+
+registry:
+  image: registry:2
+  links:
+    - redis:redis
+    - docker_auth:docker_auth
+  ports:
+    - 127.0.0.1:5000:5000
+  volumes:
+    - ./docker-registry/server.crt:/etc/docker/registry/server.crt:ro
+    - ./docker-registry/config.yml:/etc/docker/registry/config.yml:ro
+    - ./docker-registry/ca.crt:/etc/docker/registry/ca.crt:ro
+    - /vol/ostack/kilo/docker-registry:/var/lib/registry
+
+apache:
+  #image: "httpd:2.4"
+  image: "mcallaway/httpd:libaprutil1-ldap"
+  hostname: registry.my.domain.com
+  ports:
+    - 443:443
+  links:
+    - registry:registry
+  volumes:
+    - ./apache/httpd.conf:/usr/local/apache2/conf/httpd.conf:ro
+    - ./apache/server.crt:/usr/local/apache2/conf/server.crt:ro
+    - ./apache/server.key:/usr/local/apache2/conf/server.key:ro
+    - ./apache/ca.crt:/usr/local/apache2/conf/ca.crt:ro
+- ./apache/ipa_ca.crt:/usr/local/apache2/conf/ipa_ca.crt:ro
