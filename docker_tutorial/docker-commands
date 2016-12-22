@@ -1,1 +1,2 @@
 sudo docker exec -it alex_my_application_img_1 bash
+sudo docker exec -it alex_my_application_img_1 sh
