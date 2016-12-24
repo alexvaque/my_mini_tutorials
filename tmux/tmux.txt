@@ -1,0 +1,69 @@
+
+prefix : set -g mouse on
+prefix : set -g mouse off 
+
+
+Control+B
+
+May+% -> vertical
+May+" -> Horizonal
+o     -> cambiar
+z     -> zoom
+n     -> next tab
+
+
+Control+B - [ (ratón)
+
+Ctrl+b n - move to the (n)ext window.
+Ctrl+b p - move to the (p)revious window.
+
+
+c     ->  create new tab
+numero -> num tab
+
+control+B+flecha -> mover pantallas
+
+
+control + b + o (sin soltar) -> rotas
+
+
+
+control + + ":" -> modo comando 
+control + b ":" -> modo comando
+
+set -g mode-mouse off
+:setw synchronize-panes off 
+:setw synchronize-panes on
+
+Tonterias
+
+
+Control+B -> t -> time 
+
+
+
+
+
+Special Config
+===============
+Control+B A (all mirror)
+Control+B o (only one)
+
+
+
+Control+B flecha  cambias de screen
+Control+B+May    -> mover pantallas
+
+
+
+
+
+tmux list-windows
+
+
+
+
+how to do scroll in tmux Control+B (repag and avpag)
+
+
+ 
